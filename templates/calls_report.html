@@ -1,0 +1,19 @@
+<div>
+    <h2>Пропущенные звонки </h2>
+    <p>
+        Пропущенных звонков: {{ report_data.missed_calls_cnt }} <br>
+        Среднее время ожидания: {{ report_data.waiting_avg }} сек. <br>
+        Максимальное время ожидания: {{ report_data.waiting_max }} сек. <br>
+    </p>
+    <ul>
+        {% for call in report_data.missed_calls %}
+            <li>Время ожидания: {{ call.duration }} сек. ||
+                Номер звонящего: {{ call.caller_number }} ||
+                Время звонка: {{ call.timestamp|date:'H:i:s' }} ||
+                UCID: {{ call.ucid }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Другие звонки</h2>
+    <p></p>
+</div>

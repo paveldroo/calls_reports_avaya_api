@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-from support_calls.constants import DJANGO_SECRET_KEY, DJANGO_DEBUG
+from support_calls.constants import DJANGO_SECRET_KEY, DJANGO_DEBUG, DATABASES_SETTINGS, MAIL_ACC, MAIL_PASS, MAIL_HOST, \
+    MAIL_PORT
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'calls'
 ]
 
 MIDDLEWARE = [
@@ -76,12 +78,7 @@ WSGI_APPLICATION = 'support_calls.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+DATABASES = DATABASES_SETTINGS
 
 
 # Password validation
@@ -114,10 +111,16 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = MAIL_HOST
+EMAIL_PORT = MAIL_PORT
+EMAIL_HOST_USER = MAIL_ACC
+EMAIL_HOST_PASSWORD = MAIL_PASS
